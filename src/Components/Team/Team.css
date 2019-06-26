@@ -1,0 +1,58 @@
+.team {
+    background: #fff;
+    padding: 1rem;
+    border-radius: .5em;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 6em 9em auto;
+    align-items: center;
+    justify-content: center;
+    justify-self: stretch;
+    grid-gap: 1em;
+    overflow: hidden;
+}
+
+.team > div, .team > input, .team > p, .team > button {
+    grid-column: span 2;
+}
+
+.team h2 {
+    max-height: 5em;
+    overflow: hidden;
+    margin: 0 0 .5em;
+}
+
+.team .score {
+    font-size: 2.5em;
+    margin: 0;
+    font-weight: bold;
+}
+
+.team input[type=text] {
+    font-size: 1.5em;
+    font-weight: bold;
+    width: auto;
+    display: block;
+    margin: 0 0 .3em 0;
+    text-align: center;
+}
+
+.team button {
+    width: auto;
+}
+
+.team .scoreButton {
+    grid-column: span 1;
+    padding: 1em;
+}
+
+.smacks {
+    display: flex;
+    justify-content: space-between;
+    line-height: 4em;
+    font-size: 1.5rem;
+}
+
+.team .scoreButton.zero-out {
+    grid-column: span 2;
+}

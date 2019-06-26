@@ -1,0 +1,61 @@
+import React, { useState } from 'react';
+import './Scoreboard.css';
+import Team from '../Team/Team';
+import {Button, Label} from '../../Elements/index';
+
+window.onbeforeunload = function () {
+    return "Are you sure you want to leave? Your scores will NOT be saved!";
+    //if we return nothing here (just calling return;) then there will be no pop-up question at all
+    //return;
+};
+
+const Scoreboard = () => {
+
+    let [teams, addTeam] = useState([]);
+    let [increment, updateIncrement] = useState(1);
+    let [plusOnes, togglePlusOnes] = useState(false);
+    let [zeroOut, toggleZeroOut] = useState(false);
+    let [menuOpen, toggleMenuOpen] = useState(false);
+    let [double, toggleDouble] = useState(false);
+    let [halve, toggleHalve] = useState(false);
+
+    return (
+        <>
+            <header>
+                <Button onClick={() => { addTeam(teams = [...teams, {id: teams.length} ] ) }}>Add team</Button>
+                <Button onClick={()=>{ toggleMenuOpen(!menuOpen) }}>Team Options</Button>
+                <aside id="options" style={{ right: menuOpen ? 0 : 'calc(var(--options-width) * -1)'}}>
+                    <div>
+                        <Label htmlFor="scoreIncrement">Scores increment by: </Label>
+                        <input type="number" id="scoreIncrement" min="1" value={increment} onChange={(e)=>{updateIncrement(e.target.value)}}/>
+                    </div>
+                    <div>
+                        <input disabled={increment <= 1} checked={plusOnes} onChange={()=>{togglePlusOnes(!plusOnes)}}type="checkbox" id="includeOnes"/>
+                        <Label htmlFor="includeOnes">Add +1/-1 buttons</Label>
+                    </div>
+                    <div>
+                        <input checked={zeroOut} onChange={() => { toggleZeroOut(!zeroOut) }} type="checkbox" id="zeroOut" />
+                        <Label htmlFor="zeroOut">Add "reset to zero" button</Label>
+                    </div>
+                    <div>
+                        <input checked={double} onChange={() => { toggleDouble(!double) }} type="checkbox" id="double" />
+                        <Label htmlFor="double">Add "2x" button</Label>
+                    </div>
+                    <div>
+                        <input checked={halve} onChange={() => { toggleHalve(!halve) }} type="checkbox" id="halve" />
+                        <Label htmlFor="halve">Add "1/2" button</Label>
+                    </div>
+                </aside>
+            </header>
+            <div id="scoreboard">
+                <ul className="teams">
+                    {teams.map(team => 
+                        <Team team={team} className="team" increment={increment} plusOnes={plusOnes} zeroOut={zeroOut} double={double} halve={halve} key={team.id} data-teamid={team.id}/>
+                    )}
+                </ul>
+            </div>
+        </>
+    )
+}
+
+export default Scoreboard;

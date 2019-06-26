@@ -1,3 +1,16 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body {
+  background: #ddd;
+  font-family: 'Rubik', sans-serif;
+}
+
+body, input, button {
+    font-family: 'Rubik', sans-serif;
+}
+
 .App {
   text-align: center;
 }
