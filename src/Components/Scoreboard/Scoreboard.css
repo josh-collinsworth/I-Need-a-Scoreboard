@@ -8,7 +8,7 @@
 }
 
 header {
-    --options-width: 440px;
+    --options-width: 420px;
     height: 80px;
     background: rgba(255,255,255,.3);
     display: flex;
