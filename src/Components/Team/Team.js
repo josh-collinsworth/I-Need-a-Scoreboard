@@ -63,7 +63,7 @@ const Team = ({ increment, plusOnes, zeroOut, double, halve }) => {
                 <span>
                     <span role="img" aria-label="smack">✋</span>
                 </span>
-                {plusOnes && <span>+1</span>} */}
+                {plusOnes && <span>+1</span>} */} 
             </div>
 
         </li>
