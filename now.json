@@ -1,7 +1,7 @@
 {
     "version": 2,
     "alias": [
-        "ineedascoreboard"
+        "ineedascoreboard.now.sh"
     ],
     "github": {
         "autoAlias": true

@@ -31,7 +31,7 @@
 .team input[type=text] {
     font-size: 1.5em;
     font-weight: bold;
-    width: auto;
+    width: 100%;
     display: block;
     margin: 0 0 .3em 0;
     text-align: center;
