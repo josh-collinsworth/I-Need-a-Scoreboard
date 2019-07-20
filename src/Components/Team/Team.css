@@ -4,7 +4,7 @@
     border-radius: .5em;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 6em 9em auto;
+    grid-template-rows: auto 1fr auto;
     align-items: center;
     justify-content: center;
     justify-self: stretch;
@@ -23,9 +23,11 @@
 }
 
 .team .score {
+    padding: .5em 0;
     font-size: 2.5em;
     margin: 0;
     font-weight: bold;
+    align-self: end;
 }
 
 .team .score .prepend {

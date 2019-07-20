@@ -1,14 +1,14 @@
 #scoreboard {
     transition: filter .3s ease-in-out, transform .3s ease-in-out;
     margin-top: var(--headerHeight);
-    transform-origin: top left;
+    transform-origin: center;
     background: var(--lightBlue);
     min-height: calc(100vh - var(--headerHeight));
 }
 
 .teams {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
     grid-gap: 1rem;
     list-style-type: none;
     justify-content: center;

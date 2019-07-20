@@ -30,7 +30,10 @@ const Scoreboard = () => {
     return (
         <>
             <header>
-                <Button id="addBtn" onClick={() => { addTeam(teams = [...teams, {id: teams.length} ] ) }}>Add {isTeam}</Button>
+                <Button id="addBtn" onClick={() => { 
+                    addTeam(teams = [...teams, {id: teams.length} ] );
+                    toggleMenuOpen(false);
+                }}>Add {isTeam}</Button>
                 <Button onClick={() => { toggleMenuOpen(!menuOpen) }}>{isTeam} Options</Button>
                 <aside id="options" style={{ right: menuOpen ? 0 : 'calc(var(--options-width) * -1)'}}>
                     <fieldset>
@@ -82,7 +85,7 @@ const Scoreboard = () => {
                     </fieldset>
                 </aside>
             </header>
-            <div id="scoreboard" style={{ filter: menuOpen ? 'blur(3px) brightness(80%)' : 'blur(0px)', transform: menuOpen ? 'scaleX(.9) translateX(-12vw)' : 'scaleX(1) translateX(0vw)'}}>
+            <div id="scoreboard" onClick={() => {toggleMenuOpen(false)}} style={{ filter: menuOpen ? 'blur(3px) brightness(80%)' : 'blur(0px)', transform: menuOpen ? 'translateX(-12vw)' : 'translateX(0vw)'}}>
                 <ul className="teams">
                     {teams.map(team => 
                         <Team team={team} className="team" key={team.id} teamID={team.id} {...{ append, appended, prepend, prepended, increment, plusOnes, zeroOut, double, halve, isTeam }}/>

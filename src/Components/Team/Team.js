@@ -8,14 +8,6 @@ const Team = ({ increment, plusOnes, zeroOut, double, halve, prepend, prepended,
     let [name, updateName] = useState(`${isTeam} ${teamID + 1}`);
     let [changingName, toggleChangingName] = useState(true);
     const inputEl = useRef(null); //Helps us auto-select input when a new team is added
-
-    //Gotta make sure we're not triggering the same event twice when blurring the input and clicking "OK"; probably a better way
-    const handleBlur = e => {
-        if (e && e.relatedTarget && e.relatedTarget.classList && e.relatedTarget.classList[0] !== 'nameChangeBtn' ){
-            toggleChangingName(false);
-        }
-        
-    }
     
     increment = Number(increment); //Will be a string; we wanna convert it for MATH!
 
@@ -29,21 +21,27 @@ const Team = ({ increment, plusOnes, zeroOut, double, halve, prepend, prepended,
         <li className="team">
             <div>
             {changingName ?
-                <input 
-                    ref={inputEl}
-                    type="text" 
-                    autoFocus
-                    onBlur={handleBlur}
-                    value={name} 
-                    onChange={e => { updateName(name = e.target.value) }}
-                    onKeyPress={e => { toggleChangingName(e.key === 'Enter' ? !changingName : changingName) }}
-                />
+                <>
+                    <input 
+                        ref={inputEl}
+                        type="text" 
+                        autoFocus
+                        onBlur={() => { toggleChangingName(!changingName) }}
+                        value={name} 
+                        onChange={e => { updateName(name = e.target.value) }}
+                            onClick={() => { toggleChangingName(!changingName) }}
+                        onKeyPress={e => { toggleChangingName(e.key === 'Enter' ? !changingName : changingName) }}
+                    />
+                    <small><i>[Click anywhere to save]</i></small>
+                    </>
                 :
-                    <h2 onClick={()=> toggleChangingName(!changingName)}>{name}</h2>
+                    <>
+                        <h2 onClick={()=> toggleChangingName(!changingName)}>{name}</h2>
+                        <button className="nameChangeBtn" onClick={() => { toggleChangingName(!changingName) }}>
+                            {changingName ? 'OK' : 'Change name'}
+                        </button>
+                    </>
                 }
-                <button className="nameChangeBtn" onClick={(e)=>{ toggleChangingName(!changingName)} }>
-                    {changingName ? 'OK' : 'Change name'}
-                </button>
             </div>
 
             <p className="score">
