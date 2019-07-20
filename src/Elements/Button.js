@@ -9,6 +9,7 @@ const Button = styled.button`
     font-size: 1rem;
     font-family: 'Rubik';
     color: inherit;
+    text-transform: capitalize;
     cursor: pointer;
     &:hover {
         background-color: var(--yellow);

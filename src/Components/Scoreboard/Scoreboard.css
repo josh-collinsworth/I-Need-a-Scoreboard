@@ -1,6 +1,9 @@
 #scoreboard {
     transition: filter .3s ease-in-out, transform .3s ease-in-out;
     margin-top: var(--headerHeight);
+    transform-origin: top left;
+    background: var(--lightBlue);
+    min-height: calc(100vh - var(--headerHeight));
 }
 
 .teams {
@@ -42,6 +45,7 @@ header input{
     padding: .1em 0;
     font-weight: bold;
     font-size: 1.1em;
+    width: 100%;
 }
 
 input[disabled], input[disabled] + label {
@@ -50,12 +54,13 @@ input[disabled], input[disabled] + label {
 }
 
 #options {
-    transition: right 0.4s cubic-bezier(0.5, -0.24, 0.49, 1.32);
+    transition: right 0.3s ease-in-out;
     display: block;
-    position: fixed;
+    position: absolute;
+    overflow: auto;
     top: 80px;
     padding: 2rem;
-    height: 100vh;
+    height: calc(100vh - var(--headerHeight));
     background: rgba(255,255,255,.97);
     display: flex;
     align-items: flex-start;
@@ -105,4 +110,21 @@ input[type=text]{
 input:placeholder-shown {
     font-style: italic;
     font-weight: normal;
+}
+
+input[type=checkbox]{
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    left: -100vw;
+    opacity: 0;
+}
+
+input[type=checkbox] + label:before {
+    font-style: normal;
+    content: '⬜ '
+}
+
+input[type=checkbox]:checked + label:before {
+    content: '✅ '
 }

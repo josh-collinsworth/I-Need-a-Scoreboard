@@ -2,12 +2,20 @@ import React, { useState, useRef, useEffect } from 'react';
 import './Team.css';
 import Button from '../../Elements/Button'
 
-const Team = ({ increment, plusOnes, zeroOut, double, halve, prepend, prepended, append, appended }) => {
+const Team = ({ increment, plusOnes, zeroOut, double, halve, prepend, prepended, append, appended, teamID, isTeam }) => {
 
     let [score, updateScore] = useState(0);
-    let [name, updateName] = useState('Team/player name');
+    let [name, updateName] = useState(`${isTeam} ${teamID + 1}`);
     let [changingName, toggleChangingName] = useState(true);
     const inputEl = useRef(null); //Helps us auto-select input when a new team is added
+
+    //Gotta make sure we're not triggering the same event twice when blurring the input and clicking "OK"; probably a better way
+    const handleBlur = e => {
+        if (e && e.relatedTarget && e.relatedTarget.classList && e.relatedTarget.classList[0] !== 'nameChangeBtn' ){
+            toggleChangingName(false);
+        }
+        
+    }
     
     increment = Number(increment); //Will be a string; we wanna convert it for MATH!
 
@@ -25,15 +33,15 @@ const Team = ({ increment, plusOnes, zeroOut, double, halve, prepend, prepended,
                     ref={inputEl}
                     type="text" 
                     autoFocus
-                    onFocus={(e) => {console.log(this)}}
+                    onBlur={handleBlur}
                     value={name} 
-                    onChange={(e) => { updateName(name = e.target.value) }}
-                    onKeyPress={(e) => { toggleChangingName(e.key === 'Enter' ? !changingName : changingName) }}
+                    onChange={e => { updateName(name = e.target.value) }}
+                    onKeyPress={e => { toggleChangingName(e.key === 'Enter' ? !changingName : changingName) }}
                 />
                 :
                     <h2 onClick={()=> toggleChangingName(!changingName)}>{name}</h2>
                 }
-                <button onClick={()=>{toggleChangingName(!changingName)}}>
+                <button className="nameChangeBtn" onClick={(e)=>{ toggleChangingName(!changingName)} }>
                     {changingName ? 'OK' : 'Change name'}
                 </button>
             </div>
