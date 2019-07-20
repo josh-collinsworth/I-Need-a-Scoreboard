@@ -1,10 +1,25 @@
 *, *:before, *:after {
   box-sizing: border-box;
+  color: inherit;
+}
+
+:root {
+  --yellow: #ffd100;
+  --orange: #ff6a13;
+  --lightGray: #a7a8aa;
+  --midGray: #888b8d;
+  --darkGray: #53565a;
+  --black: #101820;
+  --lightBlue: #7ba7bc;
+  --darkBlue: #34657f;
+  
+  --headerHeight: 80px;
 }
 
 body {
-  background: #ddd;
+  background: var(--lightBlue);
   font-family: 'Rubik', sans-serif;
+  color: var(--black);
 }
 
 body, input, button {
@@ -22,7 +37,7 @@ body, input, button {
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #34657F;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

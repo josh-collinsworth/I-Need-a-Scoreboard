@@ -14,10 +14,18 @@ const Scoreboard = () => {
     let [teams, addTeam] = useState([]);
     let [increment, updateIncrement] = useState(1);
     let [plusOnes, togglePlusOnes] = useState(false);
+
+    let [prepend, togglePrepend] = useState(false);
+    let [prepended, updatePrepended] = useState('');
+
+    let [append, toggleAppend] = useState(false);
+    let [appended, updateAppended] = useState('');
+
     let [zeroOut, toggleZeroOut] = useState(false);
     let [menuOpen, toggleMenuOpen] = useState(false);
     let [double, toggleDouble] = useState(false);
     let [halve, toggleHalve] = useState(false);
+
 
     return (
         <>
@@ -25,32 +33,49 @@ const Scoreboard = () => {
                 <Button onClick={() => { addTeam(teams = [...teams, {id: teams.length} ] ) }}>Add team</Button>
                 <Button onClick={()=>{ toggleMenuOpen(!menuOpen) }}>Team Options</Button>
                 <aside id="options" style={{ right: menuOpen ? 0 : 'calc(var(--options-width) * -1)'}}>
-                    <div>
-                        <Label htmlFor="scoreIncrement">Scores increment by: </Label>
-                        <input type="number" id="scoreIncrement" min="1" value={increment} onChange={(e)=>{updateIncrement(e.target.value)}}/>
-                    </div>
-                    <div>
-                        <input disabled={increment <= 1} checked={plusOnes} onChange={()=>{togglePlusOnes(!plusOnes)}}type="checkbox" id="includeOnes"/>
-                        <Label htmlFor="includeOnes">Add +1/-1 buttons</Label>
-                    </div>
-                    <div>
-                        <input checked={zeroOut} onChange={() => { toggleZeroOut(!zeroOut) }} type="checkbox" id="zeroOut" />
-                        <Label htmlFor="zeroOut">Add "reset to zero" button</Label>
-                    </div>
-                    <div>
-                        <input checked={double} onChange={() => { toggleDouble(!double) }} type="checkbox" id="double" />
-                        <Label htmlFor="double">Add "2x" button</Label>
-                    </div>
-                    <div>
-                        <input checked={halve} onChange={() => { toggleHalve(!halve) }} type="checkbox" id="halve" />
-                        <Label htmlFor="halve">Add "1/2" button</Label>
-                    </div>
+                    <fieldset>
+                        <legend>Score options</legend>
+                        <div>
+                            <Label htmlFor="scoreIncrement">Scores increment by: </Label>
+                            <input type="number" id="scoreIncrement" min="1" value={increment} onChange={(e)=>{updateIncrement(e.target.value)}}/>
+                        </div>
+                        <div>
+                            <input checked={prepend} onChange={() => { togglePrepend(!prepend) }} type="checkbox" id="prepend" />
+                            <Label htmlFor="prepend">Prepend score: </Label>      
+                            <input type="text" placeholder="ex.: $" disabled={!prepend} value={prepended} onChange={(e) => updatePrepended(e.target.value)} />             
+                        </div>
+                        <div>
+                            <input checked={append} onChange={() => { toggleAppend(!append) }} type="checkbox" id="append" />
+                            <Label htmlFor="append">Append score: </Label>                    
+                            <input type="text" placeholder="ex.: 'tokens'" disabled={!append} value={appended} onChange={(e) => updateAppended(e.target.value)} />
+
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Extra Buttons</legend>
+                        <div>
+                            <input disabled={increment <= 1} checked={plusOnes} onChange={()=>{togglePlusOnes(!plusOnes)}}type="checkbox" id="includeOnes"/>
+                            <Label htmlFor="includeOnes">Add +1/-1 buttons</Label>
+                        </div>
+                        <div>
+                            <input checked={zeroOut} onChange={() => { toggleZeroOut(!zeroOut) }} type="checkbox" id="zeroOut" />
+                            <Label htmlFor="zeroOut">Add "reset to zero" button</Label>
+                        </div>
+                        <div>
+                            <input checked={double} onChange={() => { toggleDouble(!double) }} type="checkbox" id="double" />
+                            <Label htmlFor="double">Add "2x" button</Label>
+                        </div>
+                        <div>
+                            <input checked={halve} onChange={() => { toggleHalve(!halve) }} type="checkbox" id="halve" />
+                            <Label htmlFor="halve">Add "1/2" button</Label>
+                        </div>
+                    </fieldset>
                 </aside>
             </header>
-            <div id="scoreboard">
+            <div id="scoreboard" style={{ filter: menuOpen ? 'blur(3px)' : 'blur(0px)', transform: menuOpen ? 'scale(.9)' : 'scale(1)'}}>
                 <ul className="teams">
                     {teams.map(team => 
-                        <Team team={team} className="team" increment={increment} plusOnes={plusOnes} zeroOut={zeroOut} double={double} halve={halve} key={team.id} data-teamid={team.id}/>
+                        <Team team={team} className="team" key={team.id} data-teamid={team.id} {...{ appended, prepended, increment, plusOnes, zeroOut, double, halve }}/>
                     )}
                 </ul>
             </div>

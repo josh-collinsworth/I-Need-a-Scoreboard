@@ -1,21 +1,31 @@
+#scoreboard {
+    transition: filter .3s ease-in-out, transform .3s ease-in-out;
+    margin-top: var(--headerHeight);
+}
+
 .teams {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     grid-gap: 1rem;
     list-style-type: none;
     justify-content: center;
-    padding: 1em 2em;
+    padding: 2em;
 }
 
 header {
     --options-width: 420px;
-    height: 80px;
-    background: rgba(255,255,255,.3);
+    height: var(--headerHeight);
+    background: var(--darkBlue);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1em 2rem;
     font-size: 1.2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 100;
 }
 
 header input{
@@ -36,25 +46,63 @@ header input{
 
 input[disabled], input[disabled] + label {
     color: #aaa;
+    opacity: .5;
 }
 
 #options {
-    transition: right 0.3s cubic-bezier(0.5, -0.24, 0.49, 1.32);
+    transition: right 0.4s cubic-bezier(0.5, -0.24, 0.49, 1.32);
     display: block;
     position: fixed;
     top: 80px;
     padding: 2rem;
     height: 100vh;
-    background: rgba(255,255,255,.95);
+    background: rgba(255,255,255,.97);
     display: flex;
     align-items: flex-start;
     align-content: flex-start;
     flex-wrap: wrap;
     width: var(--options-width);
+    z-index: 100;
 }
 
 #options div {
     width: 100%;
     margin-bottom: 1em;
     text-align: left;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(min-content, max-content));
+    grid-gap: .5rem;
+    align-items: center;
+    align-content: center;
+}
+
+fieldset {
+    width: 100%;
+    border: 1px solid;
+    padding: 1em;
+    border-radius: 6px;
+}
+
+fieldset + fieldset {
+    margin-top: 1rem;
+}
+
+legend {
+    font-weight: bold;
+    padding: 0 .5em;
+}
+
+input::placeholder {
+    color: #aaa;
+}
+
+input[type=text]{
+    width: 100%;
+    border: 1px solid;
+    border-radius: 4px;
+}
+
+input:placeholder-shown {
+    font-style: italic;
+    font-weight: normal;
 }
