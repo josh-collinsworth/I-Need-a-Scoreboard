@@ -75,7 +75,7 @@ const Scoreboard = () => {
             <div id="scoreboard" style={{ filter: menuOpen ? 'blur(3px)' : 'blur(0px)', transform: menuOpen ? 'scale(.9)' : 'scale(1)'}}>
                 <ul className="teams">
                     {teams.map(team => 
-                        <Team team={team} className="team" key={team.id} data-teamid={team.id} {...{ appended, prepended, increment, plusOnes, zeroOut, double, halve }}/>
+                        <Team team={team} className="team" key={team.id} data-teamid={team.id} {...{ append, appended, prepend, prepended, increment, plusOnes, zeroOut, double, halve }}/>
                     )}
                 </ul>
             </div>

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import './Team.css';
 import Button from '../../Elements/Button'
 
-const Team = ({ increment, plusOnes, zeroOut, double, halve, prepended, appended }) => {
+const Team = ({ increment, plusOnes, zeroOut, double, halve, prepend, prepended, append, appended }) => {
 
     let [score, updateScore] = useState(0);
     let [name, updateName] = useState('Team/player name');
@@ -39,9 +39,9 @@ const Team = ({ increment, plusOnes, zeroOut, double, halve, prepended, appended
             </div>
 
             <p className="score">
-                <span class="prepend">{prepended}</span>
+                {prepend && <span class="prepend">{prepended}</span>}
                 {score}
-                <span class="prepend">{appended}</span>
+                {append && <span class="prepend">{appended}</span>}
             </p>
             {plusOnes && 
                 <>
