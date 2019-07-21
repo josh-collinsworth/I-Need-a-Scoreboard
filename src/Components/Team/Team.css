@@ -1,33 +1,32 @@
 .team {
+    --fontSize: calc(.9em + 2vmin);
     background: #fff;
     padding: 1rem;
     border-radius: .5em;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr;
     grid-template-rows: auto 1fr auto;
     align-items: center;
     justify-content: center;
     justify-self: stretch;
-    grid-gap: 1em;
+    grid-gap: 2vmin;
     overflow: hidden;
-}
-
-.team > div, .team > input, .team > p, .team > button {
-    grid-column: span 2;
 }
 
 .team h2 {
+    font-size: var(--fontSize);
     max-height: 5em;
     overflow: hidden;
-    margin: 0 0 .5em;
+    margin: 0;
 }
 
 .team .score {
-    padding: .5em 0;
-    font-size: 2.5em;
+    font-size: calc(1.2em + 3vmin);
     margin: 0;
     font-weight: bold;
     align-self: end;
+    grid-column: 1 / 2;
+    grid-row: 2 / -1;
 }
 
 .team .score .prepend {
@@ -36,7 +35,7 @@
 }
 
 .team input[type=text] {
-    font-size: 1.5em;
+    font-size: var(--fontSize);
     font-weight: bold;
     width: 100%;
     display: block;
@@ -50,7 +49,7 @@
 
 .team .scoreButton {
     grid-column: span 1;
-    padding: 1em;
+    padding: 2vmin;
 }
 
 .smacks {
@@ -61,5 +60,26 @@
 }
 
 .team .scoreButton.zero-out {
-    grid-column: span 2;
+    grid-column: 2 / -1;
+}
+
+@media (min-width: 768px) {
+    .team {
+        grid-template-columns: 1fr 1fr;
+    }
+    .team > div, .team > input, .team > p, .team > button {
+        grid-column: span 2;
+    }
+    .team .score {
+        grid-column: auto;
+        grid-row: auto;
+        grid-column: span 2;
+        padding: .5em 0;
+    }
+    .team h2 {
+        margin: 0 0 .5em;
+    }
+    .team .scoreButton.zero-out {
+        grid-column: span 2;
+    }
 }

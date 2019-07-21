@@ -8,12 +8,13 @@
 
 .teams {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    grid-template-columns: 1fr;
     grid-gap: 1rem;
     list-style-type: none;
     justify-content: center;
     padding: 2em;
 }
+
 
 header {
     --options-width: 420px;
@@ -67,6 +68,7 @@ input[disabled], input[disabled] + label {
     align-content: flex-start;
     flex-wrap: wrap;
     width: var(--options-width);
+    max-width: 100%;
     z-index: 100;
 }
 
@@ -128,3 +130,11 @@ input[type=checkbox] + label:before {
 input[type=checkbox]:checked + label:before {
     content: '✅ '
 }
+
+
+
+@media (min-width: 768px) {
+        .teams {
+            grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+        }
+    }

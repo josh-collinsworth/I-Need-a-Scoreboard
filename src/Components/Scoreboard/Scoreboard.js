@@ -9,6 +9,8 @@ window.onbeforeunload = function () {
     //return;
 };
 
+
+
 const Scoreboard = () => {
 
     let [teams, addTeam] = useState([]);
@@ -83,6 +85,9 @@ const Scoreboard = () => {
                             <Label htmlFor="isTeam">This game is for teams</Label>
                         </div>
                     </fieldset>
+
+                    <Button onClick={()=> sort(teams)}>Order by score</Button>
+                    
                 </aside>
             </header>
             <div id="scoreboard" onClick={() => {toggleMenuOpen(false)}} style={{ filter: menuOpen ? 'blur(3px) brightness(80%)' : 'blur(0px)', transform: menuOpen ? 'translateX(-12vw)' : 'translateX(0vw)'}}>

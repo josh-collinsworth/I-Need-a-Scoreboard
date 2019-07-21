@@ -20,19 +20,19 @@ const Team = ({ increment, plusOnes, zeroOut, double, halve, prepend, prepended,
     return (
         <li className="team">
             <div>
-            {changingName ?
-                <>
-                    <input 
-                        ref={inputEl}
-                        type="text" 
-                        autoFocus
-                        onBlur={() => { toggleChangingName(!changingName) }}
-                        value={name} 
-                        onChange={e => { updateName(name = e.target.value) }}
-                            onClick={() => { toggleChangingName(!changingName) }}
-                        onKeyPress={e => { toggleChangingName(e.key === 'Enter' ? !changingName : changingName) }}
-                    />
-                    <small><i>[Click anywhere to save]</i></small>
+                {changingName ?
+                    <>
+                        <input 
+                            ref={inputEl}
+                            type="text" 
+                            autoFocus
+                            onBlur={() => { toggleChangingName(!changingName) }}
+                            value={name} 
+                            onChange={e => { updateName(name = e.target.value) }}
+                                onClick={() => { toggleChangingName(!changingName) }}
+                            onKeyPress={e => { toggleChangingName(e.key === 'Enter' ? !changingName : changingName) }}
+                        />
+                        <small><i>[Click anywhere to save]</i></small>
                     </>
                 :
                     <>
