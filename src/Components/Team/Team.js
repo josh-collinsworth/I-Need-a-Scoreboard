@@ -2,9 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import './Team.css';
 import Button from '../../Elements/Button'
 
-const Team = ({ increment, plusOnes, zeroOut, double, halve, prepend, prepended, append, appended, teamID, isTeam }) => {
+const Team = ({ increment, plusOnes, zeroOut, double, halve, prepend, prepended, append, appended, teamID, isTeam, score, changeScore }) => {
 
-    let [score, updateScore] = useState(0);
     let [name, updateName] = useState(`${isTeam} ${teamID + 1}`);
     let [changingName, toggleChangingName] = useState(true);
     const inputEl = useRef(null); //Helps us auto-select input when a new team is added
@@ -51,18 +50,18 @@ const Team = ({ increment, plusOnes, zeroOut, double, halve, prepend, prepended,
             </p>
             {plusOnes && 
                 <>
-                    <Button className="scoreButton" onClick={()=>{ updateScore(score - 1 )}}> -1 </Button>
-                    <Button className="scoreButton" onClick={()=>{ updateScore(score + 1 )}}> +1 </Button>
+                    <Button className="scoreButton" onClick={()=>{ changeScore(score - 1, teamID )}}> -1 </Button>
+                    <Button className="scoreButton" onClick={()=>{ changeScore(score + 1, teamID )}}> +1 </Button>
                 </>
             }
-            <Button className="scoreButton" onClick={()=>{ updateScore(score - increment )}}> -{increment} </Button>
-            <Button className="scoreButton" onClick={()=>{ updateScore(score + increment )}}> +{increment} </Button>
+            <Button className="scoreButton" onClick={()=>{ changeScore(score - increment, teamID )}}> -{increment} </Button>
+            <Button className="scoreButton" onClick={()=>{ changeScore(score + increment, teamID )}}> +{increment} </Button>
             
-            {double && <Button className="scoreButton" onClick={() => { updateScore(score * 2) }}>×2</Button>}
+            {double && <Button className="scoreButton" onClick={() => { changeScore(score * 2, teamID) }}>×2</Button>}
 
-            {halve && <Button className="scoreButton" onClick={() => { updateScore(score / 2) }}>÷2</Button>}
+            {halve && <Button className="scoreButton" onClick={() => { changeScore(score / 2, teamID) }}>÷2</Button>}
           
-            {zeroOut && <Button className="scoreButton zero-out" onClick={() => { updateScore(score = 0) }}> Reset to 0 </Button>}
+            {zeroOut && <Button className="scoreButton zero-out" onClick={() => { changeScore(score = 0, teamID) }}> Reset to 0 </Button>}
 
             <div className="smacks">
                 {/* <span>
