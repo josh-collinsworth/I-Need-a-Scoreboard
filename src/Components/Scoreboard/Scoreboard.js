@@ -14,7 +14,7 @@ window.onbeforeunload = function () {
 const Scoreboard = () => {
 
     let [teams, updateTeams] = useState([]);
-    let [isTeam, toggleIsTeam] = useState('player')
+    let [useTeams, toggleUseTeams] = useState(false)
     let [increment, updateIncrement] = useState(1);
     let [plusOnes, togglePlusOnes] = useState(false);
 
@@ -39,6 +39,14 @@ const Scoreboard = () => {
         updateTeams([...newTeams]);
     }
 
+    const getPlayerType = capitalize => {
+        if(capitalize){
+            return useTeams ? 'Team' : 'Player';
+        } else {
+            return useTeams ? 'team' : 'player';
+        }
+    }
+
     const sortTeams = () => {
         const sortedTeams = teams.sort((a, b) => b.score - a.score);
         updateTeams([...sortedTeams]);
@@ -46,11 +54,11 @@ const Scoreboard = () => {
 
     return (
         <>
-            <AppHeader {...{teams, updateTeams, menuOpen, toggleMenuOpen, isTeam, toggleIsTeam, increment, updateIncrement, plusOnes, togglePlusOnes, prepend, togglePrepend, prepended, updatePrepended, append, toggleAppend, appended, updateAppended, zeroOut, toggleZeroOut, double, toggleDouble, halve, toggleHalve, sortTeams}}/>
+            <AppHeader {...{teams, updateTeams, menuOpen, toggleMenuOpen, useTeams, toggleUseTeams, increment, updateIncrement, plusOnes, togglePlusOnes, prepend, togglePrepend, prepended, updatePrepended, append, toggleAppend, appended, updateAppended, zeroOut, toggleZeroOut, double, toggleDouble, halve, toggleHalve, sortTeams, getPlayerType}}/>
             <div id="scoreboard" onClick={() => {toggleMenuOpen(false)}} style={{ filter: menuOpen ? 'blur(3px) brightness(80%)' : 'blur(0px)', transform: menuOpen ? 'translateX(-12vw)' : 'translateX(0vw)'}}>
                 <ul className="teams">
                     {teams.map(team => 
-                        <Team team={team} className="team" key={team.id} teamID={team.id} score={team.score} {...{ append, appended, prepend, prepended, increment, plusOnes, zeroOut, double, halve, isTeam, changeScore }}/>
+                        <Team team={team} className="team" key={team.id} teamID={team.id} score={team.score} {...{ append, appended, prepend, prepended, increment, plusOnes, zeroOut, double, halve, useTeams, changeScore, getPlayerType }}/>
                     )}
                 </ul>
             </div>

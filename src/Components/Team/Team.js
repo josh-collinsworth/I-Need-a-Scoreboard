@@ -2,9 +2,9 @@ import React, { useState, useRef, useEffect } from 'react';
 import './Team.css';
 import Button from '../../Elements/Button'
 
-const Team = ({ increment, plusOnes, zeroOut, double, halve, prepend, prepended, append, appended, teamID, isTeam, score, changeScore }) => {
+const Team = ({ increment, plusOnes, zeroOut, double, halve, prepend, prepended, append, appended, teamID, useTeams, score, changeScore, getPlayerType }) => {
 
-    let [name, updateName] = useState(`${isTeam} ${teamID + 1}`);
+    let [name, updateName] = useState(`${getPlayerType(true)} ${teamID + 1}`);
     let [changingName, toggleChangingName] = useState(true);
     const inputEl = useRef(null); //Helps us auto-select input when a new team is added
     
@@ -37,7 +37,7 @@ const Team = ({ increment, plusOnes, zeroOut, double, halve, prepend, prepended,
                     <>
                         <h2 onClick={()=> toggleChangingName(!changingName)}>{name}</h2>
                         <button className="nameChangeBtn" onClick={() => { toggleChangingName(!changingName) }}>
-                            {changingName ? 'OK' : 'Change name'}
+                            {changingName ? `OK` : `Change ${getPlayerType()} name`}
                         </button>
                     </>
                 }

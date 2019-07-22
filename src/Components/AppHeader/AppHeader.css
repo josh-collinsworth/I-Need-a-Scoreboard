@@ -15,10 +15,14 @@ header {
     z-index: 100;
 }
 
-header input{
+header input {
     padding: .5em;
     font-size: 1rem;
     font-weight: bold;
+}
+
+header button + * {
+    margin-left: .5em;
 }
 
 #scoreIncrement {
