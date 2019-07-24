@@ -70,6 +70,11 @@ input[disabled], input[disabled] + label {
     align-content: center;
 }
 
+#options div.range-holder {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 fieldset {
     width: 100%;
     border: 1px solid;
@@ -94,6 +99,11 @@ input[type=text]{
     width: 100%;
     border: 1px solid;
     border-radius: 4px;
+}
+
+input[type=range]{
+    width: 100%;
+    grid-column: 1 / -1;
 }
 
 input:placeholder-shown {

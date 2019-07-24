@@ -2,7 +2,7 @@ import React from 'react';
 import './AppHeader.css';
 import { Button, Label } from '../../Elements/index';
 
-const AppHeader = ({ teams, updateTeams, menuOpen, toggleMenuOpen, useTeams, toggleUseTeams, increment, updateIncrement, plusOnes, togglePlusOnes, prepend, togglePrepend, prepended, updatePrepended, append, toggleAppend, appended, updateAppended, zeroOut, toggleZeroOut, double, toggleDouble, halve, toggleHalve, sortTeams, getPlayerType }) => {
+const AppHeader = ({ teams, updateTeams, menuOpen, toggleMenuOpen, useTeams, toggleUseTeams, increment, updateIncrement, plusOnes, togglePlusOnes, prepend, togglePrepend, prepended, updatePrepended, append, toggleAppend, appended, updateAppended, zeroOut, toggleZeroOut, double, toggleDouble, halve, toggleHalve, sortTeams, getPlayerType, teamMinWidth, setTeamMinWidth }) => {
 
     return (
         <header>
@@ -11,7 +11,7 @@ const AppHeader = ({ teams, updateTeams, menuOpen, toggleMenuOpen, useTeams, tog
                 toggleMenuOpen(false);
             }}>Add {getPlayerType()}</Button>
             <div>
-                <Button onClick={sortTeams}>Sort <span className="hide-on-mobile">{getPlayerType()}s</span> by score</Button>
+                <Button disabled={teams.length < 2} onClick={sortTeams}>Sort <span className="hide-on-mobile">{getPlayerType()}s</span> by score</Button>
                 <Button onClick={() => { toggleMenuOpen(!menuOpen) }}>Game Options</Button>
             </div>
             <aside id="options" style={{ right: menuOpen ? 0 : 'calc(var(--options-width) * -1)' }}>
@@ -52,7 +52,11 @@ const AppHeader = ({ teams, updateTeams, menuOpen, toggleMenuOpen, useTeams, tog
                     </div>
                 </fieldset>
                 <fieldset>
-                    <legend>Labeling</legend>
+                    <legend>Display</legend>
+                    <div className="range-holder">
+                        <Label htmlFor="teamMinWidth">Team minimum width:</Label>
+                        <input value={teamMinWidth} onChange={e => setTeamMinWidth(Number(e.target.value))} type="range" min="1" max="60" id="teamMinWidth"/>
+                    </div>
                     <div>
                         <input checked={!useTeams} type="radio" name="entity" value="player" onChange={(e) => { toggleUseTeams(!useTeams) }} id="isPlayer" />
                         <Label htmlFor="isPlayer">This game is for players</Label>

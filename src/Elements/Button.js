@@ -11,7 +11,7 @@ const Button = styled.button`
     color: inherit;
     text-transform: capitalize;
     cursor: pointer;
-    &:hover {
+    &:not(:disabled)hover {
         background-color: var(--yellow);
     }
 `

@@ -29,6 +29,8 @@ const Scoreboard = () => {
     let [double, toggleDouble] = useState(false);
     let [halve, toggleHalve] = useState(false);
 
+    let [teamMinWidth, setTeamMinWidth] = useState(12);
+
     const changeScore = (score, id) => {
         const newTeams = teams;
         newTeams.forEach(team => {
@@ -54,9 +56,9 @@ const Scoreboard = () => {
 
     return (
         <>
-            <AppHeader {...{teams, updateTeams, menuOpen, toggleMenuOpen, useTeams, toggleUseTeams, increment, updateIncrement, plusOnes, togglePlusOnes, prepend, togglePrepend, prepended, updatePrepended, append, toggleAppend, appended, updateAppended, zeroOut, toggleZeroOut, double, toggleDouble, halve, toggleHalve, sortTeams, getPlayerType}}/>
+            <AppHeader {...{teams, updateTeams, menuOpen, toggleMenuOpen, useTeams, toggleUseTeams, increment, updateIncrement, plusOnes, togglePlusOnes, prepend, togglePrepend, prepended, updatePrepended, append, toggleAppend, appended, updateAppended, zeroOut, toggleZeroOut, double, toggleDouble, halve, toggleHalve, sortTeams, getPlayerType, teamMinWidth, setTeamMinWidth}}/>
             <div id="scoreboard" onClick={() => {toggleMenuOpen(false)}} style={{ filter: menuOpen ? 'blur(3px) brightness(80%)' : 'blur(0px)', transform: menuOpen ? 'translateX(-12vw)' : 'translateX(0vw)'}}>
-                <ul className="teams">
+                <ul className="teams" style={{ gridTemplateColumns: `repeat(auto-fit, minmax(${teamMinWidth + (teamMinWidth === 60 ? '%' : 'rem')}, 1fr))`}}>
                     {teams.map(team => 
                         <Team team={team} className="team" key={team.id} teamID={team.id} score={team.score} {...{ append, appended, prepend, prepended, increment, plusOnes, zeroOut, double, halve, useTeams, changeScore, getPlayerType }}/>
                     )}

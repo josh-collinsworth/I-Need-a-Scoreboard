@@ -54,6 +54,14 @@ body, input, button {
   color: #61dafb;
 }
 
+*:disabled {
+  opacity: .5;
+}
+
+*:disabled:hover {
+  cursor: not-allowed;
+}
+
 @media (min-width: 768px){
   .hide-on-mobile {
     display: initial;
