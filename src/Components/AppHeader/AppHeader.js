@@ -33,7 +33,7 @@ const AppHeader = ({ teams, updateTeams, menuOpen, toggleMenuOpen, useTeams, tog
                     </div>
                 </fieldset>
                 <fieldset>
-                    <legend>{getPlayerType(true)} options</legend>
+                    <legend>{getPlayerType(true)} card button options</legend>
                     <div>
                         <input disabled={increment <= 1} checked={plusOnes} onChange={() => { togglePlusOnes(!plusOnes) }} type="checkbox" id="includeOnes" />
                         <Label htmlFor="includeOnes">Add +1/-1 buttons</Label>
@@ -54,11 +54,11 @@ const AppHeader = ({ teams, updateTeams, menuOpen, toggleMenuOpen, useTeams, tog
                 <fieldset>
                     <legend>Display</legend>
                     <div className="range-holder">
-                        <Label htmlFor="teamMinWidth">Adjust {getPlayerType()} minimum width:</Label>
+                        <Label htmlFor="teamMinWidth">{getPlayerType(true)} card minimum width:</Label>
                         <input value={teamMinWidth} onChange={e => setTeamMinWidth(Number(e.target.value))} type="range" min="1" max="60" id="teamMinWidth"/>
                     </div>
                     <div className="range-holder">
-                        <Label htmlFor="appFontSize">Font size:</Label>
+                        <Label htmlFor="appFontSize">{getPlayerType(true)} font size:</Label>
                         <input value={appFontSize} onChange={e => setAppFontSize(e.target.value)} type="range" min="8" max="42" id="appFontSize"/>
                     </div>
                     <fieldset>
