@@ -30,6 +30,8 @@ const Scoreboard = () => {
     let [halve, toggleHalve] = useState(false);
 
     let [teamMinWidth, setTeamMinWidth] = useState(12);
+    
+    let [appFontSize, setAppFontSize] = useState(18);
 
     const changeScore = (score, id) => {
         const newTeams = teams;
@@ -56,8 +58,8 @@ const Scoreboard = () => {
 
     return (
         <>
-            <AppHeader {...{teams, updateTeams, menuOpen, toggleMenuOpen, useTeams, toggleUseTeams, increment, updateIncrement, plusOnes, togglePlusOnes, prepend, togglePrepend, prepended, updatePrepended, append, toggleAppend, appended, updateAppended, zeroOut, toggleZeroOut, double, toggleDouble, halve, toggleHalve, sortTeams, getPlayerType, teamMinWidth, setTeamMinWidth}}/>
-            <div id="scoreboard" onClick={() => {toggleMenuOpen(false)}} style={{ filter: menuOpen ? 'blur(3px) brightness(80%)' : 'blur(0px)', transform: menuOpen ? 'translateX(-12vw)' : 'translateX(0vw)'}}>
+            <AppHeader {...{teams, updateTeams, menuOpen, toggleMenuOpen, useTeams, toggleUseTeams, increment, updateIncrement, plusOnes, togglePlusOnes, prepend, togglePrepend, prepended, updatePrepended, append, toggleAppend, appended, updateAppended, zeroOut, toggleZeroOut, double, toggleDouble, halve, toggleHalve, sortTeams, getPlayerType, teamMinWidth, setTeamMinWidth, appFontSize, setAppFontSize}}/>
+            <div id="scoreboard" onClick={() => {toggleMenuOpen(false)}} style={{ filter: menuOpen ? 'brightness(80%)' : '', fontSize:  appFontSize +  'px' }}>
                 <ul className="teams" style={{ gridTemplateColumns: `repeat(auto-fit, minmax(${teamMinWidth + (teamMinWidth === 60 ? '%' : 'rem')}, 1fr))`}}>
                     {teams.map(team => 
                         <Team team={team} className="team" key={team.id} teamID={team.id} score={team.score} {...{ append, appended, prepend, prepended, increment, plusOnes, zeroOut, double, halve, useTeams, changeScore, getPlayerType }}/>

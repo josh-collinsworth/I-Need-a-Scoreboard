@@ -2,7 +2,7 @@
     --fontSize: calc(.9em + 2vmin);
     background: #fff;
     padding: 1rem;
-    border-radius: .5em;
+    border-radius: .5rem;
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
     grid-template-rows: auto 1fr auto;
@@ -18,6 +18,13 @@
     max-height: 5em;
     overflow: hidden;
     margin: 0;
+}
+
+.team button {
+    font-size: .4em;
+    background: none;
+    border:  1px solid var(--lightGray);
+    border-radius: 4px;
 }
 
 .team .score {
